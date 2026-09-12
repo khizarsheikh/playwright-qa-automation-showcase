@@ -1,0 +1,12 @@
+{
+  "command": "npm test",
+  "environment": "Windows; Node 24.20.0; Chromium",
+  "stats": {
+    "startTime": "2026-09-12T13:51:45.669Z",
+    "duration": 8358.503,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

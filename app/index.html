@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tasklane · Your work, in focus</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/client.js" type="module"></script>
+</head>
+<body>
+  <header><a class="brand" href="/">tasklane<span>.</span></a><span class="badge">QA AUTOMATION SHOWCASE</span></header>
+  <main>
+    <section id="auth" class="welcome">
+      <div class="intro"><span class="eyebrow">LESS FRICTION. MORE FLOW.</span><h1>Small steps.<br>Meaningful progress.</h1><p>A calm space for the work that matters.<br>Plan your next move, one task at a time.</p><div class="illustration" aria-hidden="true"><div class="mini-card"><span class="dot"></span> Plan the next release <span class="pill">Done</span></div><div class="mini-card"><span class="dot outline"></span> Make something useful</div><div class="mini-card"><span class="dot outline"></span> Keep moving forward</div></div><span class="demo-note">A personal portfolio demo · Use fictional details</span></div>
+      <div class="card auth-card"><span class="eyebrow">YOUR WORKSPACE AWAITS</span><h2>Welcome to Tasklane</h2><p>Sign in or create a temporary demo account.</p><form id="loginForm"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" placeholder="you@example.test" required><label for="password">Password</label><input id="password" type="password" minlength="8" maxlength="128" autocomplete="current-password" required><button class="full" type="submit">Sign in <span aria-hidden="true">→</span></button><button id="register" type="button" class="secondary full">Create demo account</button></form><p id="authError" role="alert"></p></div>
+    </section>
+    <section id="workspace" hidden>
+      <div class="workspace-heading"><div><span class="eyebrow">YOUR WORKSPACE</span><h1>Make room for progress.</h1><p id="identity"></p></div><button id="logout" class="secondary">Sign out</button></div>
+      <div class="metrics"><div><span class="metric-label">TOTAL TASKS</span><strong id="totalCount">0</strong></div><div><span class="metric-label">IN PROGRESS</span><strong id="activeCount">0</strong></div><div><span class="metric-label">COMPLETED</span><strong id="doneCount">0</strong></div></div>
+      <div class="card"><div class="section-heading"><h2>Your task board</h2><span class="subtle">One thing at a time.</span></div><form id="taskForm" class="toolbar"><input id="title" aria-label="New task" placeholder="What needs to get done?" maxlength="120" required><button>Add task</button></form><div class="filter-bar"><label for="filter">Show</label><select id="filter"><option>All</option><option>Active</option><option>Completed</option></select></div><p id="taskError" role="alert"></p><div id="tasks" aria-label="Task list"></div><div id="empty" class="empty"><span aria-hidden="true">✧</span><h3>A little space for your next idea.</h3><p>No tasks in this view.</p></div></div>
+    </section>
+    <footer><span>Built to demonstrate reliable test automation.</span><span>Temporary data · Resets on server restart</span></footer>
+  </main>
+  <dialog id="editDialog"><form id="editForm"><h2>Edit task</h2><label for="editTitle">Task title</label><input id="editTitle" maxlength="120" required><div class="dialog-actions"><button id="cancelEdit" type="button" class="secondary">Cancel</button><button type="submit">Save changes</button></div></form></dialog>
+</body>
+</html>

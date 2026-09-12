@@ -1,0 +1,85 @@
+name: QA regression and deployment verification
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox
+      - run: npm run typecheck
+      - run: npm run test:cross-browser
+      - name: Generate Allure report even when tests fail
+        if: always()
+        run: npm run allure:generate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-evidence
+          path: |
+            playwright-report/
+            test-results/
+            allure-results/
+            allure-report/
+          retention-days: 14
+
+  container-smoke:
+    name: Build container, start disposable deployment, run smoke tests
+    needs: regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: docker build -t tasklane:qa .
+      - run: docker run --detach --name tasklane-qa --publish 3000:3000 tasklane:qa
+      - name: Wait for deployment readiness
+        run: node scripts/wait-for-app.mjs
+      - name: Run tests against the container (no Playwright-managed server)
+        run: npm run test:smoke -- --project=api --project=chromium
+        env:
+          BASE_URL: http://127.0.0.1:3000
+      - name: Generate report
+        if: always()
+        run: npm run allure:generate
+      - name: Collect deployment logs
+        if: always()
+        run: docker logs tasklane-qa > deployment.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: container-smoke-evidence
+          path: |
+            playwright-report/
+            test-results/
+            allure-report/
+            deployment.log
+          retention-days: 14
+      - name: Remove disposable deployment
+        if: always()
+        run: docker rm --force tasklane-qa

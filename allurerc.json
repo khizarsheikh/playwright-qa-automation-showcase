@@ -1,0 +1,5 @@
+{
+  "name": "Tasklane QA · Personal portfolio",
+  "output": "./allure-report",
+  "resultsDir": "./allure-results"
+}

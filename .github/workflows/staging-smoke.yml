@@ -1,0 +1,41 @@
+name: Verify an existing Tasklane staging deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'URL of your disposable Tasklane staging environment (never a third-party app)'
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      BASE_URL: ${{ inputs.base_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Confirm Tasklane readiness
+        run: node scripts/wait-for-app.mjs
+      - run: npm run test:smoke -- --project=api --project=chromium
+      - if: always()
+        run: npm run allure:generate
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: staging-smoke-evidence
+          path: |
+            playwright-report/
+            test-results/
+            allure-report/
+          retention-days: 14

@@ -1,0 +1,32 @@
+{
+  "name": "playwright-qa-automation-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A reproducible QA portfolio: Playwright, TypeScript, Allure and GitHub Actions against Tasklane.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node app/server.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test",
+    "test:cross-browser": "node scripts/cross-browser.mjs",
+    "test:api": "playwright test --project=api",
+    "test:ui": "playwright test --ui",
+    "test:failure-demo": "node scripts/failure-demo.mjs",
+    "report": "playwright show-report",
+    "allure:generate": "node scripts/generate-report.mjs",
+    "allure:open": "allure open",
+    "demo:record": "node scripts/record-demo.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "24.13.4",
+    "allure": "3.17.0",
+    "allure-playwright": "3.12.1",
+    "typescript": "7.0.2"
+  }
+}
