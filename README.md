@@ -6,6 +6,12 @@
 
 This personal portfolio project tests **Tasklane**, a small task-management application included in this repository. It demonstrates UI and API testing with TypeScript and Playwright, Allure reporting, and GitHub Actions workflows. It is a demonstration, not paid client work.
 
+## About the engineer
+
+Built and maintained by [Khizar Sheikh](https://github.com/khizarsheikh), a QA automation engineer with DevOps experience based in Lahore, Pakistan.
+
+Available for freelance work involving Playwright test-framework setup, UI and API regression automation, CI/CD integration, Allure reporting, Docker-based test environments, and investigation of unstable automated tests.
+
 ![Tasklane task board](docs/assets/task-board.png)
 
 ## The problem this project addresses
