@@ -24,7 +24,7 @@ The default full run started at `2026-09-12T13:51:45.669Z`. The machine-readable
 
 ## GitHub Actions verification
 
-Workflow run [34702139179](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/runs/34702139179) completed successfully on **12 September 2026**.
+Workflow run [34760375659](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/runs/34760375659) completed successfully on **12 September 2026**.
 
 | Job | Duration | Verified behavior |
 | --- | ---: | --- |
@@ -33,11 +33,10 @@ Workflow run [34702139179](https://github.com/khizarsheikh/playwright-qa-automat
 
 Artifacts `regression-evidence` and `container-smoke-evidence` were uploaded by the successful run with a 14-day retention period.
 
-The first run reported deprecation warnings because `actions/checkout@v4`, `actions/setup-node@v4`, and `actions/upload-artifact@v4` use a Node.js 20 action runtime. The workflows were subsequently updated to Node.js 24-compatible major releases. A new CI run must verify that maintenance change.
+The first run reported deprecation warnings because `actions/checkout@v4`, `actions/setup-node@v4`, and `actions/upload-artifact@v4` use a Node.js 20 action runtime. The workflows were subsequently updated to Node.js 24-compatible major releases. Run 34760375659 verified `actions/checkout@v5`, `actions/setup-node@v5`, and `actions/upload-artifact@v6` successfully in both jobs.
 
 ## Not yet verified
 
-1. **Updated action releases:** the next workflow run must pass after the Node.js 24 action upgrades.
-2. **Remote staging:** only an independently started local target and the disposable CI container were verified; no persistent public deployment was created.
+- **Remote staging:** only an independently started local target and the disposable CI container were verified; no persistent public deployment was created.
 
 The default suite and Allure report pass locally. Cross-browser regression and disposable Docker deployment checks pass in GitHub Actions.

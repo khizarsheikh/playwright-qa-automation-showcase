@@ -18,7 +18,7 @@ This repository provides reproducible checks for account access and task workflo
 
 **Verified locally:** 27 passing tests (13 API + 14 Chromium UI), plus 5 passing checks against an independently started local target.
 
-**Verified in GitHub Actions:** the Linux cross-browser regression passed in Chromium and Firefox, then the Docker image built and its five smoke checks passed against a disposable container. See the [verified workflow run](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/runs/34702139179) and detailed record below.
+**Verified in GitHub Actions:** the Linux cross-browser regression passed in Chromium and Firefox, then the Docker image built and its five smoke checks passed against a disposable container. See the [latest verified workflow run](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/runs/34760375659) and detailed record below.
 
 - [Recorded application walkthrough](docs/assets/walkthrough.webm)
 - [Test strategy and coverage](docs/test-strategy.md)
