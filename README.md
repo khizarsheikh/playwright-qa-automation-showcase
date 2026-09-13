@@ -1,5 +1,7 @@
 # Tasklane · QA automation showcase
 
+[![QA regression and deployment verification](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/workflows/qa.yml/badge.svg)](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/workflows/qa.yml)
+
 **A working example of the service I can deliver: automated regression tests, CI integration, and useful failure reports.**
 
 This personal portfolio project tests **Tasklane**, a small task-management application included in this repository. It demonstrates UI and API testing with TypeScript and Playwright, Allure reporting, and GitHub Actions workflows. It is a demonstration, not paid client work.
@@ -14,7 +16,9 @@ This repository provides reproducible checks for account access and task workflo
 
 ## See the evidence
 
-**Verified locally: 27 passing tests (13 API + 14 Chromium UI), plus 5 passing checks against an independently started local target.** Firefox, Docker and GitHub-hosted execution still require verification; see the detailed record below.
+**Verified locally:** 27 passing tests (13 API + 14 Chromium UI), plus 5 passing checks against an independently started local target.
+
+**Verified in GitHub Actions:** the Linux cross-browser regression passed in Chromium and Firefox, then the Docker image built and its five smoke checks passed against a disposable container. See the [verified workflow run](https://github.com/khizarsheikh/playwright-qa-automation-showcase/actions/runs/34702139179) and detailed record below.
 
 - [Recorded application walkthrough](docs/assets/walkthrough.webm)
 - [Test strategy and coverage](docs/test-strategy.md)
@@ -22,8 +26,6 @@ This repository provides reproducible checks for account access and task workflo
 - [Intentional failure example](docs/failure-walkthrough.md)
 - [Client-facing case study](docs/case-study.md)
 - [How to present this project in an interview](docs/demo-guide.md)
-
-No live CI badge is shown until this repository has been published and its workflows have actually passed. Local execution does not prove GitHub Actions or the Docker image has passed.
 
 ![Allure report from the verified 27-test local run](docs/assets/allure-report.png)
 
@@ -135,7 +137,7 @@ Setting `BASE_URL` disables the Playwright-managed server. For HTTPS staging, se
 ## Scope and limitations
 
 - Tests cover the defined Tasklane flows, not every browser, accessibility requirement, or security property.
-- Chromium is the default desktop browser; Firefox is an explicit cross-browser option and runs in Linux CI. Firefox launch stalled in this local Windows sandbox, so Firefox success is not claimed. Safari and mobile are not part of the regression matrix.
+- Chromium is the default local desktop browser. Chromium and Firefox both passed in Linux CI. Firefox launch stalled in the original restricted Windows environment, which remains a local-environment limitation. Safari and mobile are not part of the regression matrix.
 - API checks include ownership boundaries, but this is not a penetration test or security certification.
 - In-memory storage, no rate limiting, no session expiry, and synchronous password hashing make the demo unsuitable as a production service.
 - Failure screenshots/traces can contain test data. This project uses fictional identities; review artifacts before sharing results from a real client environment.
